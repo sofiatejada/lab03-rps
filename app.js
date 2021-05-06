@@ -13,6 +13,7 @@ const lostDisplay = document.querySelector('#lost-display');
 const wonDisplay = document.querySelector('#won-display');
 const drawDisplay = document.querySelector('#draw-display');
 const timesLostSpan = document.querySelector('#times-lost');
+const reset = document.querySelector('#reset');
 
 
 // initialize state
@@ -32,37 +33,39 @@ button.addEventListener('click', () => {
     lostDisplay.style.display = 'none';
 
 
-    //JS doesn't want to have this outside the the event listener because it's gonna reassign the const every time you click, and you can't reassign const
-    let selectedRadio = document.querySelector('input:checked');
-    // const selectedRadio = selectedRadioEl.value;
-    console.log(selectedRadio.value);
     //get computer input
     let computerChoice = getRandomThrow();
-    console.log(computerChoice);
+
 
     // get user input
+    let selectedRadio = document.querySelector('input:checked');
     let userChoice = selectedRadio.value;
 
 
     //compare user choice and computer choice by putting it into the function
     if (didUserWin(computerChoice, userChoice) === 'draw') {
+
         //show the draw section
         drawDisplay.style.display = 'block';
         wonDisplay.style.display = 'none';
         lostDisplay.style.display = 'none';
+
         //count the draw
         timesDraw = timesDraw + 1;
+
         //update times played
         timesPlayed = timesPlayed + 1;
         timesPlayedSpan.textContent = timesPlayed;
+
         //update the draw count
         drawsSpan.textContent = timesDraw;
+
         //tell the user what happened
         drawDisplay.textContent = `Wow, the computer chose ${computerChoice}, that's a draw!`;
     } 
     
     else if (didUserWin(computerChoice, userChoice) === 'lose') {
-        console.log(computerChoice, userChoice, 'lose');
+
         //show the lost section
         drawDisplay.style.display = 'none';
         wonDisplay.style.display = 'none';
@@ -79,7 +82,7 @@ button.addEventListener('click', () => {
     } 
     
     else if (didUserWin(computerChoice, userChoice) === 'win') {
-        console.log(computerChoice, userChoice, 'win');
+
         //show the won section
         drawDisplay.style.display = 'none';
         wonDisplay.style.display = 'block';
@@ -94,13 +97,18 @@ button.addEventListener('click', () => {
         //tell the user what happened
         wonDisplay.textContent = `The computer chose ${computerChoice}. You win!`;
     }
+});
 
+reset.addEventListener('click', () => {
+    //reset the displays
+    drawDisplay.style.display = 'none';
+    wonDisplay.style.display = 'none';
+    lostDisplay.style.display = 'none';
 
-
-
-
-
-
-
+    //reset the counting spans
+    
+    timesPlayedSpan.textContent = '';
+    drawsSpan.textContent = '';
+    timesLostSpan.textContent = '';
 });
 
