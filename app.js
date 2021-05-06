@@ -7,22 +7,31 @@ import { didUserWin } from './utils.js';
 
 const button = document.querySelector('#button');
 const timesWonSpan = document.querySelector('#times-won');
-const timesLostSpan = document.querySelector('#times-lost');
+const timesPlayedSpan = document.querySelector('#times-played');
 const drawsSpan = document.querySelector('#number-of-draws');
 const lostDisplay = document.querySelector('#lost-display');
 const wonDisplay = document.querySelector('#won-display');
 const drawDisplay = document.querySelector('#draw-display');
+const timesLostSpan = document.querySelector('#times-lost');
 
 
 // initialize state
 let timesWon = 0;
-let timesLost = 0;
+let timesPlayed = 0;
 let timesDraw = 0;
+let timesLost = 0;
 
 
 
 // set event listeners 
 button.addEventListener('click', () => {
+    
+    //hide stuff first
+    drawDisplay.style.display = 'none';
+    wonDisplay.style.display = 'none';
+    lostDisplay.style.display = 'none';
+
+
     //JS doesn't want to have this outside the the event listener because it's gonna reassign the const every time you click, and you can't reassign const
     let selectedRadio = document.querySelector('input:checked');
     // const selectedRadio = selectedRadioEl.value;
@@ -37,25 +46,56 @@ button.addEventListener('click', () => {
 
     //compare user choice and computer choice by putting it into the function
     if (didUserWin(computerChoice, userChoice) === 'draw') {
+        //show the draw section
+        drawDisplay.style.display = 'block';
+        wonDisplay.style.display = 'none';
+        lostDisplay.style.display = 'none';
         //count the draw
         timesDraw = timesDraw + 1;
+        //update times played
+        timesPlayed = timesPlayed + 1;
+        timesPlayedSpan.textContent = timesPlayed;
         //update the draw count
         drawsSpan.textContent = timesDraw;
         //tell the user what happened
         drawDisplay.textContent = `Wow, the computer chose ${computerChoice}, that's a draw!`;
-    } else if (didUserWin(computerChoice, userChoice) === 'lose') {
+    } 
+    
+    else if (didUserWin(computerChoice, userChoice) === 'lose') {
         console.log(computerChoice, userChoice, 'lose');
-        timesLost = timesLost + 1;
+        //show the lost section
+        drawDisplay.style.display = 'none';
+        wonDisplay.style.display = 'none';
+        lostDisplay.style.display = 'block';
+        //update times played
+        timesPlayed = timesPlayed + 1;
+        timesPlayedSpan.textContent = timesPlayed;
+        //update times lost
+        timesLost = ((timesPlayed) - (timesWon + timesDraw));
         timesLostSpan.textContent = timesLost;
+        console.log(timesLost);
         //tell the user what happened
         lostDisplay.textContent = `The computer chose ${computerChoice}. You lose`;
-    } else if (didUserWin(computerChoice, userChoice) === 'win') {
+    } 
+    
+    else if (didUserWin(computerChoice, userChoice) === 'win') {
         console.log(computerChoice, userChoice, 'win');
+        //show the won section
+        drawDisplay.style.display = 'none';
+        wonDisplay.style.display = 'block';
+        lostDisplay.style.display = 'none';
+        //count the win
         timesWon = timesWon + 1;
+        //update win count
         timesWonSpan.textContent = timesWon;
+        //update times played
+        timesPlayed = timesPlayed + 1;
+        timesPlayedSpan.textContent = timesPlayed;
         //tell the user what happened
         wonDisplay.textContent = `The computer chose ${computerChoice}. You win!`;
     }
+
+
 
 
 
