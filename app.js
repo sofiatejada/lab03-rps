@@ -3,8 +3,6 @@ import { getRandomThrow } from './get-random-throw.js';
 import { didUserWin } from './utils.js';
 
 //DOM elements
-// const selectedRadio = document.querySelector('input:checked');
-
 const button = document.querySelector('#button');
 const timesWonSpan = document.querySelector('#times-won');
 const timesPlayedSpan = document.querySelector('#times-played');
@@ -34,7 +32,7 @@ button.addEventListener('click', () => {
 
 
     //get computer input
-    let computerChoice = getRandomThrow();
+    let computerChoice = getRandomThrow(Math.floor(Math.random() * 3));
 
 
     // get user input
@@ -111,14 +109,22 @@ button.addEventListener('click', () => {
 
 reset.addEventListener('click', () => {
 
+    //set everything to zero
+    timesWon = 0;
+    timesPlayed = 0;
+    timesDraw = 0;
+    timesLost = 0;
+
     //reset the displays
     drawDisplay.style.display = 'none';
     wonDisplay.style.display = 'none';
     lostDisplay.style.display = 'none';
+    
 
     //reset the counting spans
     timesPlayedSpan.textContent = '';
     drawsSpan.textContent = '';
     timesLostSpan.textContent = '';
+    timesWonSpan.textContent = '';
 });
 

@@ -6,12 +6,24 @@ export function didUserWin(computerChoice, userChoice) {
     }
 
     //if the user lost
-    else if ((computerChoice === 'rock' && userChoice === 'scissors') || (computerChoice === 'paper' && userChoice === 'rock') || (computerChoice === 'scissors' && userChoice === 'paper')) {
+    else if (
+        (computerChoice === 'rock' && userChoice === 'scissors') 
+        || 
+        (computerChoice === 'paper' && userChoice === 'rock') 
+        || 
+        (computerChoice === 'scissors' && userChoice === 'paper'))
+    {
         return 'lose';
     } 
     
     //if the user won
-    else if ((computerChoice === 'rock' && userChoice === 'paper') || (computerChoice === 'paper' && userChoice === 'scissors') || (computerChoice === 'scissors' && userChoice === 'rock')) {
+    else if (
+        (computerChoice === 'rock' && userChoice === 'paper') 
+        || 
+        (computerChoice === 'paper' && userChoice === 'scissors') 
+        || 
+        (computerChoice === 'scissors' && userChoice === 'rock')) 
+    {
         return 'win';
     }
     
