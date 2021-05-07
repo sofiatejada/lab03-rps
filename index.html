@@ -14,11 +14,11 @@
         </h1>
     </header>
     <main>
-        <section>
+        <section >
             <h3>
                 Let's play Rock-Paper-Scissors
             </h3>
-            <p>
+            <article>
                 The rules are Simple:
                 <ul>
                     <li>
@@ -31,50 +31,23 @@
                         Paper defeats rock
                     </li>
                 </ul>
-            </p>
+            </article>
         </section>
         <section>
-            <label>
+            <label class="buttonstyles">
                 <input name="rps" type="radio" value="rock" />
                 <img src="rock.png" />
             </label>
-            <label>
+            <label class="buttonstyles">
                 <input name="rps" type="radio" value="paper" />
                 <img src="paper.png" />
             </label>
-            <label>
+            <label class="buttonstyles"> 
                 <input name="rps" type="radio" value="scissors" />
                 <img src="scissors.png" />
             </label>
         </section>
         <section>
-            <p class="stats">
-              Times won: 
-              <span id="times-won">
-
-              </span>  
-              Times played: 
-              <span id="times-played">
-
-              </span> 
-              Draws: 
-              <span id="number-of-draws">
-
-              </span>
-              Loses:
-              <span id="times-lost">
-
-              </span>
-            </p>
-            <p id="lost-display" class="lost">
-
-            </p>
-            <p id="won-display" class="won">
-
-            </p>
-            <p id="draw-display" class="draw">
-
-            </p>
         </section>
         <section>
             <button id="button">
@@ -88,7 +61,33 @@
 
     </main>
 
+    <footer> <p class="stats">
+        Times won: 
+        <span id="times-won">
 
+        </span>  
+        Times played: 
+        <span id="times-played">
+
+        </span> 
+        Draws: 
+        <span id="number-of-draws">
+
+        </span>
+        Loses:
+        <span id="times-lost">
+
+        </span>
+        </p>
+        <p id="lost-display" class="lost">
+
+        </p>
+        <p id="won-display" class="won">
+
+        </p>
+        <p id="draw-display" class="draw">
+
+        </p></footer>
 
 
 
